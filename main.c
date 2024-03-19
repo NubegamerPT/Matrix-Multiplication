@@ -12,7 +12,6 @@
 #define ANSI_COLOR_MAGENTA "\033[0;35m" //Console MAGENTA
 #define ANSI_COLOR_CYAN    "\033[0;36m" //Console CYAN
 #define ANSI_COLOR_RESET   "\033[0m"    /* Reset to default color */
-#define MAXSTRING 64
 
 int main()
 {
