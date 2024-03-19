@@ -21,7 +21,7 @@ int verificarMatrizes(int collomsA, int linesB)
     int state = 0;
     if (collomsA != linesB)
     {
-        state = 1;
+        state = -1;
     }
     return state;
 }
@@ -30,26 +30,29 @@ int writePlus(int type, const char text[MAX_STRING_SIZE])
 {   
     //this function allows the programer to easially send printf with color code,
     //for exemple, writePlus(2, Files deleted!), the  output will be: "(in red)[ERROR] Files deleted!"
-
+    int stat = 0;
     switch (type)
     {
     case 0:
-        printf("[INFO] %s\n", text); // text with no color (white)
+        stat = printf("[INFO] %s", text); // text with no color (white)
         break;
     case 1:
-        printf(ANSI_COLOR_YELLOW "[WARNING] %s\n", text); // text with yellow color
+        stat = printf(ANSI_COLOR_YELLOW "[WARNING] %s", text); // text with yellow color
         break;
     case 2:
-        printf(ANSI_COLOR_RED "[ERRO] %s\n", text); // text with red color
+        stat = printf(ANSI_COLOR_RED "[ERRO] %s", text); // text with red color
         break;
     case 3:
-        printf(ANSI_COLOR_GREEN "[SUCESS] %s\n", text); // text with no color
+        stat = printf(ANSI_COLOR_GREEN "[SUCESS] %s", text); // text with no color
         break;
     case 4:
-        printf(ANSI_COLOR_BLUE "[OUTPUT] %s\n", text); // text with no color
+        stat = printf(ANSI_COLOR_BLUE "[OUTPUT] %s", text); // text with no color
         break;
     default:
-        printf("[INFO] %s\n", text); // text with no color (white)
+        stat = printf("[INFO] %s", text); // text with no color (white)
         break;
     }
+    printf(ANSI_COLOR_RESET "\n");
+    return stat;
 }
+
