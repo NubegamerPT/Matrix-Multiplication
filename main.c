@@ -15,5 +15,7 @@
 
 int main()
 {
+    /* Variables Declaration */
+    
     return 0;
 }
