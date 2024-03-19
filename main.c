@@ -5,18 +5,25 @@
 #include <math.h>
 #include <stdio.h>
 
-#define ANSI_COLOR_RED     "\033[0;31m" //Console RED
-#define ANSI_COLOR_GREEN   "\033[0;32m" //Console GREEN
-#define ANSI_COLOR_YELLOW  "\033[0;33m" //Console YELLOW
-#define ANSI_COLOR_BLUE    "\033[0;34m" //Console BLUE
-#define ANSI_COLOR_MAGENTA "\033[0;35m" //Console MAGENTA
-#define ANSI_COLOR_CYAN    "\033[0;36m" //Console CYAN
-#define ANSI_COLOR_RESET   "\033[0m"    /* Reset to default color */
+#include <functions.c>
 
 int main()
 {
-    int arrayTeste1[3][3] = {{1,3,5}, {2,4,6}};
-    int arrayTeste2[3][3] = {{1,3,5}, {2,4,6}};
-    
+    int arrayCollomA = 3;
+    int arrayLinesA = 3;
+    int arrayCollomB = 3;
+    int arrayLinesB = 3;
+
+    // gives sizes for 2 matrixes used for testting porpuses
+    // colloms ->, lines ↓
+
+    int arrayTest1[arrayCollomA][arrayLinesA];
+    int arrayTest2[arrayCollomB][arrayLinesB];
+
+    if (verificarMatrizes(arrayCollomA, arrayLinesB) == 0)
+    {
+        writePlus(2,"Cant multiply! (check colloms and lines)");
+    }
+    writePlus(4,"Matrixes are sutable");
     return 0;
 }
