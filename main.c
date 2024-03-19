@@ -5,7 +5,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#include <functions.c>
+#include "functions.c"
 
 int main()
 {
@@ -20,10 +20,11 @@ int main()
     int arrayTest1[arrayCollomA][arrayLinesA];
     int arrayTest2[arrayCollomB][arrayLinesB];
 
-    if (verificarMatrizes(arrayCollomA, arrayLinesB) == 0)
+    if (verificarMatrizes(arrayCollomA, arrayLinesB) == -1)
     {
         writePlus(2,"Cant multiply! (check colloms and lines)");
     }
-    writePlus(4,"Matrixes are sutable");
+    writePlus(3,"Matrixes are sutable!");
+
     return 0;
 }
