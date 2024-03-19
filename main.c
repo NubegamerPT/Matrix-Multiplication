@@ -15,7 +15,8 @@
 
 int main()
 {
-    /* Variables Declaration */
-
+    int arrayTeste1[3][3] = {{1,3,5}, {2,4,6}};
+    int arrayTeste2[3][3] = {{1,3,5}, {2,4,6}};
+    
     return 0;
 }
