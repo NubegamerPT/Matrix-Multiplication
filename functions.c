@@ -21,12 +21,11 @@ void breakLine(void)
 
 int checkArray(int collomsA, int linesB)
 {
-    int state = 0;
     if (collomsA != linesB)
     {
-        state = -1;
+        return -1;
     }
-    return state;
+    return 0;
 }
 
 int writePlus(int type, const char text[MAX_STRING_SIZE])
