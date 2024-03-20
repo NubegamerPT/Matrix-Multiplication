@@ -3,28 +3,31 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <math.h>
-#include <stdio.h>
 
 #include "functions.c"
 
+#define ARRAY_ROWS_A 3
+#define ARRAY_COLS_A 3
+#define ARRAY_ROWS_B 3
+#define ARRAY_COLS_B 3
+
 int main()
 {
-    int arrayCollomA = 3;
-    int arrayLinesA = 3;
-    int arrayCollomB = 3;
-    int arrayLinesB = 3;
-
     // gives sizes for 2 matrixes used for testting porpuses
-    // colloms ->, lines ↓
+    // cols ->, rows ↓
 
-    int arrayTest1[arrayCollomA][arrayLinesA];
-    int arrayTest2[arrayCollomB][arrayLinesB];
+    // Define 3D vectors
+    int arrayTest1[ARRAY_ROWS_A][ARRAY_COLS_A];
+    int arrayTest2[ARRAY_ROWS_B][ARRAY_COLS_B];
 
-    if (verificarMatrizes(arrayCollomA, arrayLinesB) == -1)
+    if (checkArray(ARRAY_COLS_A, ARRAY_ROWS_B) == -1)
     {
-        writePlus(2,"Cant multiply! (check colloms and lines)");
+        writePlus(2, "Cannot multiply! (Check columns and rows)");
     }
-    writePlus(3,"Matrixes are sutable!");
+    else
+    {
+        writePlus(3, "Matrices are suitable for multiplication!");
+    }
 
     return 0;
 }
