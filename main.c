@@ -26,14 +26,7 @@ int main()
 {
     // gives sizes for 2 matrixes used for testting porpuses
     // cols ->, rows ↓
-
-    // Define 3D vectors
-    writePlus(0,"TESTE");
-    writePlus(1,"TESTE");
-    writePlus(2,"TESTE");
-    writePlus(3,"TESTE");
-    writePlus(4,"TESTE");
-    SLEEP_MS(1000);
+    
     int arrayTest1[MAX_ARRAY][MAX_ARRAY];
     int arrayTest2[MAX_ARRAY][MAX_ARRAY];
 
