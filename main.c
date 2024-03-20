@@ -34,7 +34,7 @@ int main()
     writePlus(3,"TESTE");
     writePlus(4,"TESTE");
     SLEEP_MS(1000);
-    /* int arrayTest1[MAX_ARRAY][MAX_ARRAY];
+    int arrayTest1[MAX_ARRAY][MAX_ARRAY];
     int arrayTest2[MAX_ARRAY][MAX_ARRAY];
 
     if (checkArray(ARRAY_COLS_A, ARRAY_ROWS_B) == -1)
@@ -48,6 +48,6 @@ int main()
         dysplayArray(arrayTest1,ARRAY_ROWS_A,ARRAY_COLS_A);
         requestArray(arrayTest2,ARRAY_ROWS_B,ARRAY_COLS_B);
         dysplayArray(arrayTest2,ARRAY_ROWS_B,ARRAY_COLS_B);
-    } */
+    }
     return 0;
 }
