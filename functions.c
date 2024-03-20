@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <math.h>
-#include <stdio.h>
 
 #define ANSI_COLOR_RED "\033[0;31m"     // Console RED
 #define ANSI_COLOR_GREEN "\033[0;32m"   // Console GREEN
@@ -16,7 +15,7 @@
 #define MAX_STRING_SIZE 256
 #define MAX_ARRAY 64
 
-int verificarMatrizes(int collomsA, int linesB)
+int checkArray(int collomsA, int linesB)
 {
     int state = 0;
     if (collomsA != linesB)
