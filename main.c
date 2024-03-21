@@ -30,6 +30,12 @@ int main()
     int arrayTest1[MAX_ARRAY][MAX_ARRAY];
     int arrayTest2[MAX_ARRAY][MAX_ARRAY];
 
+    int arrayResult[MAX_ARRAY][MAX_ARRAY] = {0};
+
+
+
+    //We knowm for a fact that matrixes can only be multiplied if the number of
+    //columns in the first matrix is equal to the number rows for the other matrix
     if (checkArray(ARRAY_COLS_A, ARRAY_ROWS_B) == -1)
     {
         writePlus(2, "Cannot multiply! (Check columns and rows)");
