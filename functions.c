@@ -4,15 +4,15 @@
 #include <ctype.h>
 #include <math.h>
 
-#define ANSI_COLOR_RED "\x1b[91m" // Console RED
-#define ANSI_COLOR_GREEN "\x1b[32m" // Console GREEN
-#define ANSI_COLOR_YELLOW "\x1b[33m" // Console YELLOW
-#define ANSI_COLOR_BLUE "\x1b[34m" // Console BLUE
-#define ANSI_COLOR_WHITE "\x1b[37m" // Console WHITE
-#define ANSI_COLOR_RESET "\x1b[0m" // Console RESET
-
 #define MAX_STRING_SIZE 256
 #define MAX_ARRAY 64
+
+#define ANSI_COLOR_RED "\x1b[91m"    // Console RED
+#define ANSI_COLOR_GREEN "\x1b[32m"  // Console GREEN
+#define ANSI_COLOR_YELLOW "\x1b[33m" // Console YELLOW
+#define ANSI_COLOR_BLUE "\x1b[34m"   // Console BLUE
+#define ANSI_COLOR_WHITE "\x1b[37m"  // Console WHITE
+#define ANSI_COLOR_RESET "\x1b[0m"   // Console RESET
 
 void breakLine(void)
 {
@@ -33,7 +33,6 @@ int writePlus(int type, const char text[MAX_STRING_SIZE])
     // this function allows the programer to easially send printf with color code,
     // for exemple, writePlus(2, Files deleted!), the  output will be: "(in red)[ERROR] Files deleted!"
     int stat = 0;
-    printf(ANSI_COLOR_RESET "");
     switch (type)
     {
     case 0:
@@ -76,10 +75,10 @@ void requestArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
     }
 }
 
-void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayCols)
+void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayCols, char text[MAX_STRING_SIZE])
 {
-    writePlus(0, "The array you inserted is:\n");
-    printf("\t\t  ");
+    writePlus(0, text);
+    printf("\n\t\t  ");
     for (int i = 0; i < arrayCols; i++)
     {
         printf("--%d--", i);
