@@ -16,61 +16,57 @@
 
 #include "functions.c"
 
-#define ARRAY_ROWS_A 2
-#define ARRAY_COLS_A 2
-#define ARRAY_ROWS_B 2
-#define ARRAY_COLS_B 3
-
 int main()
 {
     int resultSizeCols = 0;
     int resultSizeRows = 0;
-    int tempSize = 0;
 
     // gives sizes for 2 matrixes used for testting porpuses
     // cols ->, rows ↓
 
     int array1[MAX_ARRAY][MAX_ARRAY];
     int array2[MAX_ARRAY][MAX_ARRAY];
-    int tempArray[MAX_ARRAY];
+    int result[MAX_ARRAY][MAX_ARRAY] = {0}; // Initialize result array with zeros
 
+    int colsA, rowsA, colsB, rowsB;
+
+    // Request user input for matrix sizes
+    printf("Enter the number of rows and columns for matrix A: \n");
+    scanf("%d %d", &rowsA, &colsA);
+    printf("Enter the number of rows and columns for matrix B: \n");
+    scanf("%d %d", &rowsB, &colsB);
 
     int arrayResult[MAX_ARRAY][MAX_ARRAY] = {0};
     // We knowm for a fact that matrixes can only be multiplied if the number of
     // columns in the first matrix is equal to the number rows for the other matrix
-    if (checkArray(ARRAY_COLS_A, ARRAY_ROWS_B) == -1)
+    if (checkArray(colsA, rowsB) == -1)
     {
         writePlus(2, "Cannot multiply! (Check columns and rows)");
     }
     else
     {
-        resultSizeCols = ARRAY_COLS_A;
-        resultSizeRows = ARRAY_ROWS_B;
-        tempSize = resultSizeCols * resultSizeRows;
+        resultSizeCols = colsA;
+        resultSizeRows = rowsB;
         writePlus(3, "Matrices are suitable for multiplication!");
-        requestArray(array1, ARRAY_COLS_A, ARRAY_ROWS_A);
-        dysplayArray(array1, ARRAY_COLS_A, ARRAY_ROWS_A,"The array you inserted:");
-        requestArray(array2, ARRAY_COLS_B, ARRAY_ROWS_B);
-        dysplayArray(array2, ARRAY_COLS_B, ARRAY_ROWS_B,"The array you inserted:");
+        requestArray(array1, colsA, rowsA);
+        dysplayArray(array1, colsA, rowsA, "The array you inserted:");
+        requestArray(array2, colsB, rowsB);
+        dysplayArray(array2, colsB, rowsB, "The array you inserted:");
     }
 
-    for (int i = 0; i < tempSize; i++)
+    for (int colsA_ = 0; colsA_ < colsA; colsA_++)
     {
-        tempArray[i] = array1[i][i] * array2[i][i] + array1[i][i+1]*array2[i+1][i];
-        tempArray[i+1] = array1[i][i]  * array2[i][i+1] + array1[i][i+1] * array2[i][i];
-    }
-
-    for (int row = 0; row < resultSizeCols; row++)
-    {
-        for (int col = 0; col < resultSizeRows; col++)
+        for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
         {
-            arrayResult[col][row] = tempArray[col + (resultSizeCols * row)];
-        }   
+            for (int rowsB_ = 0; rowsB_ < rowsB; rowsB_++)
+            {
+                arrayResult[colsA_][rowsB_] += array1[colsA_][rowsA_] * array2[rowsB_][colsA_];
+            }
+        }
     }
 
-    
-    dysplayArray(arrayResult,resultSizeCols,resultSizeRows,"The resulting array will look like this:");
-    
+    dysplayArray(arrayResult, resultSizeCols, resultSizeRows, "The resulting array will look like this:");
+    SLEEP_MS(1000000);
 
     return 0;
 }
