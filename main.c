@@ -54,16 +54,22 @@ int main()
         dysplayArray(array2, colsB, rowsB, "The array you inserted:");
     }
 
-    for (int colsA_ = 0; colsA_ < colsA; colsA_++)
-    {
+//  for (int colsA_ = 0; colsA_ < colsA; colsA_++)
+//    { 
         for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
         {
-            for (int rowsB_ = 0; rowsB_ < rowsB; rowsB_++)
+            for (int colsB_ = 0; colsB_ < colsB; colsB_++)
             {
-                arrayResult[colsA_][rowsB_] += array1[colsA_][rowsA_] * array2[rowsB_][colsA_];
+                for (int rowsB_ = 0; rowsB_ < rowsB; rowsB_++)
+                {
+                    arrayResult[rowsA_][colsB_] += array1[rowsA_][rowsB_] * array2[rowsB_][colsB_];
+                    printf("Doing: [%d][%d] += [%d][%d]*[%d][%d]   ", rowsA_, colsB_, rowsA_, rowsB_, rowsB_, colsB_);
+                    printf("colsA_ = [%d] rowsA_ = [%d] colsB_ = [%d] rowsB_ = [%d]\n", 0, rowsA_, colsB_, rowsB_);
+                    SLEEP_MS(1);
+                }
             }
         }
-    }
+//    }
 
     dysplayArray(arrayResult, resultSizeCols, resultSizeRows, "The resulting array will look like this:");
     SLEEP_MS(1000000);
