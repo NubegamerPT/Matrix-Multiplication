@@ -69,7 +69,7 @@ void requestArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
     {
         for (int col = 0; col < arrayCols; col++)
         {
-            printf("[INPUT]   Element [%d,%d]: ", row, col);
+            printf("[INPUT]   Element [%d,%d]: ", row + 1, col + 1);
             scanf("%d", &userArray[row][col]);
         }
     }
@@ -81,12 +81,12 @@ void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
     printf("\n\t\t  ");
     for (int i = 0; i < arrayCols; i++)
     {
-        printf("--%d--", i);
+        printf("--%d--", i+1);
     }
     printf("\n");
     for (int row = 0; row < arrayRows; row++)
     {
-        printf("\t\t%d:",row);
+        printf("\t\t%d:",row+1);
         for (int col = 0; col < arrayCols; col++)
         {
             printf("[%3d]", userArray[row][col]);
