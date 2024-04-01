@@ -64,7 +64,7 @@ int writePlus(int type, const char text[MAX_STRING_SIZE])
 void requestArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayCols)
 {
     breakLine();
-    writePlus(0,"Enter the Elements of the array:");
+    writePlus(0, "Enter the Elements of the array:");
     for (int row = 0; row < arrayRows; row++)
     {
         for (int col = 0; col < arrayCols; col++)
@@ -81,12 +81,12 @@ void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
     printf("\n\t\t  ");
     for (int i = 0; i < arrayCols; i++)
     {
-        printf("--%d--", i+1);
+        printf("--%d--", i + 1);
     }
     printf("\n");
     for (int row = 0; row < arrayRows; row++)
     {
-        printf("\t\t%d:",row+1);
+        printf("\t\t%d:", row + 1);
         for (int col = 0; col < arrayCols; col++)
         {
             printf("[%3d]", userArray[row][col]);
@@ -94,4 +94,54 @@ void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
         printf("\n");
     }
     printf("\n");
+}
+
+void multyplyArrys(int array1[MAX_ARRAY][MAX_ARRAY], int array2[MAX_ARRAY][MAX_ARRAY], int arrayResult[MAX_ARRAY][MAX_ARRAY], int rowsA, int colsB, int rowsB)
+{
+    int tempA = 0;
+    int tempB = 0;
+
+    for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
+    {
+        for (int colsB_ = 0; colsB_ < colsB; colsB_++)
+        {
+            for (int rowsB_ = 0; rowsB_ < rowsB; rowsB_++)
+            {
+                if (colsB_ == 0 && rowsB_ == 0)
+                {
+                    tempA = 0;
+                }
+                else if (colsB_ > 0 && rowsB_ == 0)
+                {
+                    tempB = tempA;
+                    tempA = 0;
+                }
+                else if (rowsB_ > 0)
+                {
+                    tempA = rowsB_;
+                }
+                else if (colsB_ > 0)
+                {
+                    tempA = colsB_;
+                }
+
+                if (colsB_ == 0 && rowsB_ == 0)
+                {
+                    tempB = 0;
+                }
+                else if (colsB_ > 0 || rowsB_ > 0)
+                {
+                    tempB = colsB_;
+                }
+
+                arrayResult[rowsA_][colsB_] += array1[rowsA_][rowsB_] * array2[tempA][tempB];
+
+                // used for debugging
+                /*printf("Doing: [%d][%d] += [%d][%d] = %2d * [%d][%d] = %2d  ", rowsA_, colsB_, rowsA_, rowsB_, array1[rowsA_][rowsB_], tempA, tempB, array2[tempA][tempB]);
+                printf("tempA = [%d] tempB = [%d] || rowsA_ = [%d] colsB_ = [%d] rowsB_ = [%d]\n", tempA, tempB, rowsA_, colsB_, rowsB_);*/
+                printf("[INFO]    Doing: [%d][%d] += [%d][%d] = %2d * [%d][%d] = %2d  \n", rowsA_ + 1, colsB_ + 1, rowsA_ + 1, colsB_ + 1, array1[rowsA_][rowsB_], tempA + 1, tempB + 1, array2[tempA][tempB]);
+                SLEEP_MS(0.5);
+            }
+        }
+    }
 }

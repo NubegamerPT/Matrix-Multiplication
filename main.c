@@ -21,11 +21,6 @@ int main()
     int resultSizeCols = 0;
     int resultSizeRows = 0;
 
-    //temp's are a "holder" to be used in conditions
-    int tempA = 0;
-    int tempB = 0;
-    int tempArray[MAX_ARRAY] = {0};
-
     // gives sizes for 2 matrixes used for testting porpuses
     // cols ->, rows ↓
 
@@ -53,63 +48,21 @@ int main()
         resultSizeCols = colsB;
         resultSizeRows = rowsA;
         writePlus(3, "Matrices are suitable for multiplication!");
+        
         requestArray(array1, rowsA, colsA);
         dysplayArray(array1, rowsA, colsA, "The array you inserted:");
         requestArray(array2, rowsB, colsB);
         dysplayArray(array2, rowsB, colsB, "The array you inserted:");
 
-        for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
-        {
-            for (int colsB_ = 0; colsB_ < colsB; colsB_++)
-            {
-                for (int rowsB_ = 0; rowsB_ < rowsB; rowsB_++)
-                {
-                    tempArray[rowsB_] = rowsB_;
+        multyplyArrys(array1, array2, arrayResult, rowsA, colsB, rowsB);
 
-                    if (colsB_ == 0 && rowsB_ == 0)
-                    {
-                        tempA = 0;
-                    }
-                    else if (colsB_ > 0 && rowsB_ == 0)
-                    {
-                        tempB = tempA;
-                        tempA = 0;
-                    }
-                    else if (rowsB_ > 0)
-                    {
-                        tempA = rowsB_;
-                    }
-                    else if (colsB_ > 0)
-                    {
-                        tempA = colsB_;
-                    }
-
-                    if (colsB_ == 0 && rowsB_ == 0)
-                    {
-                        tempB = 0;
-                    }
-                    else if (colsB_ > 0 || rowsB_ > 0)
-                    {
-                        tempB = colsB_;
-                    }
-
-                    arrayResult[rowsA_][colsB_] += array1[rowsA_][rowsB_] * array2[tempA][tempB];
-
-                    //used for debugging
-                    /*printf("Doing: [%d][%d] += [%d][%d] = %2d * [%d][%d] = %2d  ", rowsA_, colsB_, rowsA_, rowsB_, array1[rowsA_][rowsB_], tempA, tempB, array2[tempA][tempB]);
-                    printf("tempA = [%d] tempB = [%d] || rowsA_ = [%d] colsB_ = [%d] rowsB_ = [%d]\n", tempA, tempB, rowsA_, colsB_, rowsB_);*/ 
-                    printf("[INFO]    Doing: [%d][%d] += [%d][%d] = %2d * [%d][%d] = %2d  \n", rowsA_ + 1, colsB_ + 1, rowsA_ + 1, colsB_ + 1, array1[rowsA_][rowsB_], tempA+1, tempB+1, array2[tempA][tempB]);
-                    SLEEP_MS(0.5);
-                }
-            }
-        }
         dysplayArray(arrayResult, resultSizeRows, resultSizeCols, "The resulting array will look like this:");
         SLEEP_MS(5000);
     }
     fflush(stdin);
-    writePlus(1,"Press any key to leave the program.");
+    writePlus(1, "Press any key to leave the program.");
     getchar();
-    writePlus(0,"Exiting the program now...");
+    writePlus(0, "Exiting the program now...");
     SLEEP_MS(3000);
 
     return 0;
