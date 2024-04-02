@@ -24,7 +24,7 @@ int mainMenu(int array1[MAX_ARRAY][MAX_ARRAY],int array2[MAX_ARRAY][MAX_ARRAY], 
     }
     if (arrayResult[0][0] != 0)
     {
-        dysplayArray(arrayResult, rowsB, colsB, "Result Array :");
+        dysplayArray(arrayResult, resultRows, resultCols, "Result Array :");
         breakLine();
     }
     writePlus(0, "Array Options:");
