@@ -140,7 +140,7 @@ void multyplyArrys(int array1[MAX_ARRAY][MAX_ARRAY], int array2[MAX_ARRAY][MAX_A
                 /*printf("Doing: [%d][%d] += [%d][%d] = %2d * [%d][%d] = %2d  ", rowsA_, colsB_, rowsA_, rowsB_, array1[rowsA_][rowsB_], tempA, tempB, array2[tempA][tempB]);
                 printf("tempA = [%d] tempB = [%d] || rowsA_ = [%d] colsB_ = [%d] rowsB_ = [%d]\n", tempA, tempB, rowsA_, colsB_, rowsB_);*/
                 printf("[INFO]    Doing: [%d][%d] += [%d][%d] = %2d * [%d][%d] = %2d  \n", rowsA_ + 1, colsB_ + 1, rowsA_ + 1, colsB_ + 1, array1[rowsA_][rowsB_], tempA + 1, tempB + 1, array2[tempA][tempB]);
-                SLEEP_MS(0.5);
+                SLEEP_MS((float)0.5);
             }
         }
     }

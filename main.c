@@ -25,7 +25,7 @@ int main()
     boolean isCorrect = FALSE;
     boolean canMultiply = FALSE;
 
-    int option = '0';
+    char option = '0';
 
     // gives sizes for 2 matrixes used for testting porpuses
     // cols ->, rows ↓
@@ -34,7 +34,10 @@ int main()
     int array2[MAX_ARRAY][MAX_ARRAY] = {0};
     int result[MAX_ARRAY][MAX_ARRAY] = {0}; // Initialize arrays with zeros
 
-    int colsA, rowsA, colsB, rowsB;
+    int colsA = 0;
+    int rowsB = 0;
+    int rowsA = 0;
+    int colsB = 0;
 
     do
     {
