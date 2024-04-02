@@ -18,8 +18,7 @@ int mainMenu()
     writePlus(0, "3 -> Multiply Arrays");
     breakLine();
     writePlus(0, "Program Options:");
-    writePlus(0, "8 -> Write to File Result Array");
-    writePlus(0, "9 -> Generate Array");
+    writePlus(0, "9 -> Write to File Result Array (not yet implemented)");
     writePlus(0, "0 -> Exit");
     breakLine();
     printf("\t\tOption: ");
