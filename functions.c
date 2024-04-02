@@ -96,7 +96,7 @@ void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
     printf("\n");
 }
 
-void multyplyArrys(int array1[MAX_ARRAY][MAX_ARRAY], int array2[MAX_ARRAY][MAX_ARRAY], int arrayResult[MAX_ARRAY][MAX_ARRAY], int rowsA, int colsB, int rowsB)
+void multiplyArrys(int array1[MAX_ARRAY][MAX_ARRAY], int array2[MAX_ARRAY][MAX_ARRAY], int arrayResult[MAX_ARRAY][MAX_ARRAY], int rowsA, int colsB, int rowsB)
 {
     int tempA = 0;
     int tempB = 0;
