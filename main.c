@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
 
 #if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
@@ -20,9 +21,9 @@
 
 int main()
 {
-    boolean isntRunning = TRUE;
-    boolean isCorrect = FALSE;
-    boolean canMultiply = FALSE;
+    bool isntRunning = true;
+    bool isCorrect = false;
+    bool canMultiply = false;
 
     FILE *userData;
 
@@ -65,11 +66,11 @@ int main()
                 breakLine();
                 writePlus(2, "Cannot multiply! (Check columns and rows)");
                 breakLine();
-                canMultiply = FALSE;
+                canMultiply = false;
             }
             else
             {
-                canMultiply = TRUE;
+                canMultiply = true;
                 resultSizeCols = colsB;
                 resultSizeRows = rowsA;
                 writePlus(3, "Matrices are suitable for multiplication!");
@@ -85,16 +86,16 @@ int main()
                     option = tolower(option);
                     if (option == 'n')
                     {
-                        isCorrect = FALSE;
+                        isCorrect = false;
                     }
                     else if (option == 'y')
                     {
-                        isCorrect = TRUE;
+                        isCorrect = true;
                     }
                     else
                     {
                         writePlus(1, "Invalid Option! Assuming to be correct. Resuming...");
-                        isCorrect = TRUE;
+                        isCorrect = true;
                     }
                 } while (!isCorrect);
 
@@ -109,16 +110,16 @@ int main()
                     option = tolower(option);
                     if (option == 'n')
                     {
-                        isCorrect = FALSE;
+                        isCorrect = false;
                     }
                     else if (option == 'y')
                     {
-                        isCorrect = TRUE;
+                        isCorrect = true;
                     }
                     else
                     {
                         writePlus(1, "Invalid Option! Assuming to be correct. Resuming...");
-                        isCorrect = TRUE;
+                        isCorrect = true;
                     }
                 } while (!isCorrect);
                 fflush(stdin);
@@ -133,7 +134,7 @@ int main()
                 writePlus(2, "Cannot multiply! (No Arrays to multiply)");
                 breakLine();
                 SLEEP_MS(1000);
-                isntRunning = TRUE;
+                isntRunning = true;
             }
             else if (!canMultiply)
             {
@@ -142,7 +143,7 @@ int main()
                 writePlus(2, "Cannot multiply! (Check columns and rows)");
                 breakLine();
                 SLEEP_MS(1000);
-                isntRunning = TRUE;
+                isntRunning = true;
             }
             else
             {
@@ -174,7 +175,7 @@ int main()
                 writePlus(2, "Nothing to write!");
                 breakLine();
                 SLEEP_MS(1000);
-                isntRunning = TRUE;
+                isntRunning = true;
             }
             else
             {
@@ -319,11 +320,11 @@ int main()
             break;
 
         case 0:
-            isntRunning = FALSE;
+            isntRunning = false;
             break;
 
         default:
-            isntRunning = TRUE;
+            isntRunning = true;
             break;
         }
     } while (isntRunning);
