@@ -16,7 +16,7 @@
 
 void breakLine(void)
 {
-    printf("------------------------------------------------- \n");
+    printf("\n------------------------------------------------- \n\n");
 }
 
 int checkArray(int collomsA, int linesB)
@@ -81,7 +81,7 @@ void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
     printf("\n\t\t  ");
     for (int i = 0; i < arrayCols; i++)
     {
-        printf("--%d--", i + 1);
+        printf("---%d---", i + 1);
     }
     printf("\n");
     for (int row = 0; row < arrayRows; row++)
@@ -89,7 +89,7 @@ void dysplayArray(int userArray[MAX_ARRAY][MAX_ARRAY], int arrayRows, int arrayC
         printf("\t\t%d:", row + 1);
         for (int col = 0; col < arrayCols; col++)
         {
-            printf("[%3d]", userArray[row][col]);
+            printf("[%5d]", userArray[row][col]);
         }
         printf("\n");
     }
@@ -144,4 +144,5 @@ void multyplyArrys(int array1[MAX_ARRAY][MAX_ARRAY], int array2[MAX_ARRAY][MAX_A
             }
         }
     }
+    breakLine();
 }
