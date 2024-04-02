@@ -8,7 +8,7 @@
 
 #define MAX_STRING_SIZE 256
 
-int mainMenu(int array1[MAX_ARRAY][MAX_ARRAY],int array2[MAX_ARRAY][MAX_ARRAY], int arrayResult[MAX_ARRAY][MAX_ARRAY], int  rowsA, int colsA, int  rowsB, int colsB, int resultRows, int resultCols)
+int mainMenu(int array1[MAX_ARRAY][MAX_ARRAY], int array2[MAX_ARRAY][MAX_ARRAY], int arrayResult[MAX_ARRAY][MAX_ARRAY], int rowsA, int colsA, int rowsB, int colsB, int resultRows, int resultCols)
 {
     int option;
     if (array1[0][0] != 0)
@@ -20,13 +20,12 @@ int mainMenu(int array1[MAX_ARRAY][MAX_ARRAY],int array2[MAX_ARRAY][MAX_ARRAY], 
     if (array2[0][0] != 0)
     {
         dysplayArray(array2, rowsB, colsB, "Array 2:");
-        breakLine();
     }
     if (arrayResult[0][0] != 0)
     {
         dysplayArray(arrayResult, resultRows, resultCols, "Result Array :");
-        breakLine();
     }
+    breakLine();
     writePlus(0, "Array Options:");
     writePlus(0, "1 -> Generate Array (not yet implemented)");
     writePlus(0, "2 -> Custom Array");

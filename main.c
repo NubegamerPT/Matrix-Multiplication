@@ -56,8 +56,6 @@ int main()
             scanf("%d %d", &rowsA, &colsA);
             writePlus(0, "Enter the number of rows and columns for matrix B: ");
             scanf("%d %d", &rowsB, &colsB);
-
-            int arrayResult[MAX_ARRAY][MAX_ARRAY] = {0};
             // We knowm for a fact that matrixes can only be multiplied if the number of
             // columns in the first matrix is equal to the number rows for the other matrix
 
@@ -159,8 +157,8 @@ int main()
                     }
                 }
 
-                multiplyArrys(array1, array2, arrayResult, rowsA, colsB, rowsB);
-                dysplayArray(arrayResult, resultSizeRows, resultSizeCols, "The resulting array will look like this:");
+                multiplyArrys(array1, array2, result, rowsA, colsB, rowsB);
+                dysplayArray(result, resultSizeRows, resultSizeCols, "The resulting array will look like this:");
                 breakLine();
                 writePlus(1, "Press any key to continue.");
                 getchar();
@@ -222,7 +220,7 @@ int main()
                         fprintf(userData, "\n");
                     }
 
-                    if (isCorrect && arrayResult[0][0] != 0)
+                    if (isCorrect && result[0][0] != 0)
                     {
                         fprintf(userData, "\nResult Array:\n    ");
                         for (int i = 0; i < resultSizeCols; i++)
@@ -235,7 +233,7 @@ int main()
                             fprintf(userData, "%3d:", row + 1);
                             for (int col = 0; col < resultSizeCols; col++)
                             {
-                                fprintf(userData, "[%5d]", arrayResult[row][col]);
+                                fprintf(userData, "[%5d]", result[row][col]);
                             }
                             fprintf(userData, "\n");
                         }
