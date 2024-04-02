@@ -7,9 +7,11 @@
 #if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
 #define SLEEP_MS(milliseconds) Sleep(milliseconds)
+#define CLS "cls"
 #elif defined(__APPLE__) || defined(__MACH__) || defined(__linux__)
 #include <unistd.h>
 #define SLEEP_MS(milliseconds) usleep(milliseconds * 1000)
+#define CLS "clear"
 #else
 #error "Unsupported operating system"
 #endif
@@ -18,12 +20,11 @@
 
 int main()
 {
-    int resultSizeCols = 0;
-    int resultSizeRows = 0;
-
     boolean isntRunning = TRUE;
     boolean isCorrect = FALSE;
     boolean canMultiply = FALSE;
+
+    FILE *userData;
 
     char option = '0';
 
@@ -39,9 +40,12 @@ int main()
     int rowsA = 0;
     int colsB = 0;
 
+    int resultSizeCols = 0;
+    int resultSizeRows = 0;
+
     do
     {
-        int temp_ = mainMenu();
+        int temp_ = mainMenu(array1, array2, result, rowsA, colsA, rowsB, colsB, resultSizeRows, resultSizeCols);
         switch (temp_)
         {
         case 1:
@@ -59,7 +63,10 @@ int main()
 
             if (checkArray(colsA, rowsB) == -1)
             {
+                system(CLS);
+                breakLine();
                 writePlus(2, "Cannot multiply! (Check columns and rows)");
+                breakLine();
                 canMultiply = FALSE;
             }
             else
@@ -87,7 +94,7 @@ int main()
                         isCorrect = TRUE;
                     }
                     else
-                    {   
+                    {
                         writePlus(1, "Invalid Option! Assuming to be correct. Resuming...");
                         isCorrect = TRUE;
                     }
@@ -111,7 +118,7 @@ int main()
                         isCorrect = TRUE;
                     }
                     else
-                    {   
+                    {
                         writePlus(1, "Invalid Option! Assuming to be correct. Resuming...");
                         isCorrect = TRUE;
                     }
@@ -123,13 +130,19 @@ int main()
         case 3:
             if (rowsA == 0)
             {
+                system(CLS);
+                breakLine();
                 writePlus(2, "Cannot multiply! (No Arrays to multiply)");
+                breakLine();
                 SLEEP_MS(1000);
                 isntRunning = TRUE;
             }
             else if (!canMultiply)
             {
+                system(CLS);
+                breakLine();
                 writePlus(2, "Cannot multiply! (Check columns and rows)");
+                breakLine();
                 SLEEP_MS(1000);
                 isntRunning = TRUE;
             }
@@ -143,14 +156,164 @@ int main()
                         result[resultSizeRows_][resultSizeCols_] = 0;
                     }
                 }
-                
-                multyplyArrys(array1, array2, arrayResult, rowsA, colsB, rowsB);
+
+                multiplyArrys(array1, array2, arrayResult, rowsA, colsB, rowsB);
                 dysplayArray(arrayResult, resultSizeRows, resultSizeCols, "The resulting array will look like this:");
                 breakLine();
                 writePlus(1, "Press any key to continue.");
                 getchar();
-                system("cls");
+                system(CLS);
             }
+            break;
+
+        case 8:
+            if (rowsA == 0 && colsB == 0)
+            {
+                system(CLS);
+                breakLine();
+                writePlus(2, "Nothing to write!");
+                breakLine();
+                SLEEP_MS(1000);
+                isntRunning = TRUE;
+            }
+            else
+            {
+                userData = fopen("arrayList.txt", "w");
+
+                if (userData == NULL)
+                {
+                    writePlus(2, "Error creating file... \n");
+                    breakLine();
+                }
+                else
+                {
+                    writePlus(3, "Writing to file... \n");
+                    fprintf(userData, "Array 1:\n    ");
+                    for (int i = 0; i < colsA; i++)
+                    {
+                        fprintf(userData, "---%d---", i + 1);
+                    }
+                    fprintf(userData, "\n");
+                    for (int row = 0; row < rowsA; row++)
+                    {
+                        fprintf(userData, "%3d:", row + 1);
+                        for (int col = 0; col < colsA; col++)
+                        {
+                            fprintf(userData, "[%5d]", array1[row][col]);
+                        }
+                        fprintf(userData, "\n");
+                    }
+
+                    fprintf(userData, "\nArray 2:\n    ");
+                    for (int i = 0; i < colsB; i++)
+                    {
+                        fprintf(userData, "---%d---", i + 1);
+                    }
+                    fprintf(userData, "\n");
+                    for (int row = 0; row < rowsB; row++)
+                    {
+                        fprintf(userData, "%3d:", row + 1);
+                        for (int col = 0; col < colsB; col++)
+                        {
+                            fprintf(userData, "[%5d]", array2[row][col]);
+                        }
+                        fprintf(userData, "\n");
+                    }
+
+                    if (isCorrect && arrayResult[0][0] != 0)
+                    {
+                        fprintf(userData, "\nResult Array:\n    ");
+                        for (int i = 0; i < resultSizeCols; i++)
+                        {
+                            fprintf(userData, "---%d---", i + 1);
+                        }
+                        fprintf(userData, "\n");
+                        for (int row = 0; row < resultSizeRows; row++)
+                        {
+                            fprintf(userData, "%3d:", row + 1);
+                            for (int col = 0; col < resultSizeCols; col++)
+                            {
+                                fprintf(userData, "[%5d]", arrayResult[row][col]);
+                            }
+                            fprintf(userData, "\n");
+                        }
+                    }
+                }
+                fclose(userData);
+
+                userData = fopen("userData.bin", "w");
+
+                if (userData != NULL)
+                {
+                    int temp_ = 0;
+                    fwrite(&rowsA, sizeof(rowsA), 1, userData);
+                    fwrite(&colsA, sizeof(colsA), 1, userData);
+                    fwrite(&rowsB, sizeof(rowsB), 1, userData);
+                    fwrite(&colsB, sizeof(colsB), 1, userData);
+                    fwrite(&isCorrect, sizeof(isCorrect), 1, userData);
+                    for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
+                    {
+                        for (int colsA_ = 0; colsA_ < colsA; colsA_++)
+                        {
+                            temp_ = array1[rowsA_][colsA_];
+                            fwrite(&temp_, sizeof(temp_), 1, userData);
+                        }
+                    }
+                    temp_ = 0;
+                    for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
+                    {
+                        for (int colsA_ = 0; colsA_ < colsA; colsA_++)
+                        {
+                            temp_ = array2[rowsA_][colsA_];
+                            fwrite(&temp_, sizeof(temp_), 1, userData);
+                        }
+                    }
+                }
+                fclose(userData);
+                SLEEP_MS(1000);
+                system(CLS);
+            }
+            break;
+
+        case 9:
+            userData = fopen("userData.bin", "r");
+
+            if (userData != NULL)
+            {
+                writePlus(3, "Reading from local file... \n");
+                int temp_ = 0;
+                fread(&rowsA, sizeof(rowsA), 1, userData);
+                fread(&colsA, sizeof(colsA), 1, userData);
+                fread(&rowsB, sizeof(rowsB), 1, userData);
+                fread(&colsB, sizeof(colsB), 1, userData);
+                fread(&isCorrect, sizeof(isCorrect), 1, userData);
+                for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
+                {
+                    for (int colsA_ = 0; colsA_ < colsA; colsA_++)
+                    {
+                        fread(&temp_, sizeof(temp_), 1, userData);
+                        array1[rowsA_][colsA_] = temp_;
+                    }
+                }
+                temp_ = 0;
+                for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
+                {
+                    for (int colsA_ = 0; colsA_ < colsA; colsA_++)
+                    {
+                        fread(&temp_, sizeof(temp_), 1, userData);
+                        array2[rowsA_][colsA_] = temp_;
+                    }
+                }
+            }
+            else
+            {
+                system(CLS);
+                breakLine();
+                writePlus(2, "Error reading file...");
+                breakLine();
+            }
+            fclose(userData);
+            SLEEP_MS(1000);
             break;
 
         case 0:
