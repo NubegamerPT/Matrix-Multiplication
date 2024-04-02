@@ -70,7 +70,6 @@ int main()
                     breakLine();
                     printf("Option: ");
                     scanf(" %c", &option);
-                    breakLine();
                     fflush(stdin);
                     option = tolower(option);
                     if (option == 'n')
@@ -95,7 +94,6 @@ int main()
                     breakLine();
                     printf("Option: ");
                     scanf(" %c", &option);
-                    breakLine();
                     fflush(stdin);
                     option = tolower(option);
                     if (option == 'n')
