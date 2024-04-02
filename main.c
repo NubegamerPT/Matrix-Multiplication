@@ -23,6 +23,7 @@ int main()
 
     boolean isntRunning = TRUE;
     boolean isCorrect = FALSE;
+    boolean canMultiply = FALSE;
 
     int option = '0';
 
@@ -56,9 +57,11 @@ int main()
             if (checkArray(colsA, rowsB) == -1)
             {
                 writePlus(2, "Cannot multiply! (Check columns and rows)");
+                canMultiply = FALSE;
             }
             else
             {
+                canMultiply = TRUE;
                 resultSizeCols = colsB;
                 resultSizeRows = rowsA;
                 writePlus(3, "Matrices are suitable for multiplication!");
@@ -121,9 +124,15 @@ int main()
                 SLEEP_MS(1000);
                 isntRunning = TRUE;
             }
+            else if (!canMultiply)
+            {
+                writePlus(2, "Cannot multiply! (Check columns and rows)");
+                SLEEP_MS(1000);
+                isntRunning = TRUE;
+            }
             else
             {
-                writePlus(1, "Clearing result array.");
+                writePlus(1, "Clearing result array. \n");
                 for (int resultSizeCols_ = 0; resultSizeCols_ < resultSizeCols; resultSizeCols_++)
                 {
                     for (int resultSizeRows_ = 0; resultSizeRows_ < resultSizeRows; resultSizeRows_++)
@@ -142,17 +151,17 @@ int main()
             break;
 
         case 0:
-            isntRunning = TRUE;
+            isntRunning = FALSE;
             break;
 
         default:
-            isntRunning = FALSE;
+            isntRunning = TRUE;
             break;
         }
     } while (isntRunning);
     fflush(stdin);
     writePlus(1, "Exiting the program now...");
-    SLEEP_MS(3000);
+    SLEEP_MS(2000);
 
     return 0;
 }
