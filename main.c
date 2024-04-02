@@ -21,7 +21,7 @@ int main()
     int resultSizeCols = 0;
     int resultSizeRows = 0;
 
-    boolean isRunning = TRUE;
+    boolean isntRunning = TRUE;
     boolean isCorrect = FALSE;
 
     int option = '0';
@@ -44,9 +44,9 @@ int main()
 
             break;
         case 2:
-            writePlus(0, "Enter the number of rows and columns for matrix A: \n");
+            writePlus(0, "Enter the number of rows and columns for matrix A: ");
             scanf("%d %d", &rowsA, &colsA);
-            writePlus(0, "Enter the number of rows and columns for matrix B: \n");
+            writePlus(0, "Enter the number of rows and columns for matrix B: ");
             scanf("%d %d", &rowsB, &colsB);
 
             int arrayResult[MAX_ARRAY][MAX_ARRAY] = {0};
@@ -77,8 +77,13 @@ int main()
                     {
                         isCorrect = FALSE;
                     }
-                    else
+                    else if (option == 'y')
                     {
+                        isCorrect = TRUE;
+                    }
+                    else
+                    {   
+                        writePlus(1, "Invalid Option! Assuming to be correct. Resuming...");
                         isCorrect = TRUE;
                     }
                 } while (!isCorrect);
@@ -97,8 +102,13 @@ int main()
                     {
                         isCorrect = FALSE;
                     }
-                    else
+                    else if (option == 'y')
                     {
+                        isCorrect = TRUE;
+                    }
+                    else
+                    {   
+                        writePlus(1, "Invalid Option! Assuming to be correct. Resuming...");
                         isCorrect = TRUE;
                     }
                 } while (!isCorrect);
@@ -111,9 +121,19 @@ int main()
             {
                 writePlus(2, "Cannot multiply! (No Arrays to multiply)");
                 SLEEP_MS(1000);
+                isntRunning = TRUE;
             }
             else
             {
+                writePlus(1, "Clearing result array.");
+                for (int resultSizeCols_ = 0; resultSizeCols_ < resultSizeCols; resultSizeCols_++)
+                {
+                    for (int resultSizeRows_ = 0; resultSizeRows_ < resultSizeRows; resultSizeRows_++)
+                    {
+                        result[resultSizeRows_][resultSizeCols_] = 0;
+                    }
+                }
+                
                 multyplyArrys(array1, array2, arrayResult, rowsA, colsB, rowsB);
                 dysplayArray(arrayResult, resultSizeRows, resultSizeCols, "The resulting array will look like this:");
                 breakLine();
@@ -124,14 +144,14 @@ int main()
             break;
 
         case 0:
-            isRunning = FALSE;
+            isntRunning = TRUE;
             break;
 
         default:
-            isRunning = TRUE;
+            isntRunning = FALSE;
             break;
         }
-    } while (!isRunning);
+    } while (isntRunning);
     fflush(stdin);
     writePlus(1, "Exiting the program now...");
     SLEEP_MS(3000);
