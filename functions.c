@@ -42,7 +42,7 @@ int writePlus(int type, const char text[MAX_STRING_SIZE])
         stat = printf(ANSI_COLOR_YELLOW "[WARNING] %s", text); // text with yellow color
         break;
     case 2:
-        stat = printf(ANSI_COLOR_RED "[ERRO]    %s", text); // text with red color
+        stat = printf(ANSI_COLOR_RED "[ERROR]   %s", text); // text with red color
         break;
     case 3:
         stat = printf(ANSI_COLOR_GREEN "[SUCESS]  %s", text); // text with green color
