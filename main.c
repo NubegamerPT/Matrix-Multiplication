@@ -148,6 +148,8 @@ int main()
             }
             else
             {
+                resultSizeCols = colsB;
+                resultSizeRows = rowsA;
                 writePlus(1, "Clearing result array. \n");
                 for (int resultSizeCols_ = 0; resultSizeCols_ < resultSizeCols; resultSizeCols_++)
                 {
@@ -251,6 +253,7 @@ int main()
                     fwrite(&rowsB, sizeof(rowsB), 1, userData);
                     fwrite(&colsB, sizeof(colsB), 1, userData);
                     fwrite(&isCorrect, sizeof(isCorrect), 1, userData);
+                    fwrite(&canMultiply, sizeof(isCorrect), 1, userData);
                     for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
                     {
                         for (int colsA_ = 0; colsA_ < colsA; colsA_++)
@@ -287,6 +290,7 @@ int main()
                 fread(&rowsB, sizeof(rowsB), 1, userData);
                 fread(&colsB, sizeof(colsB), 1, userData);
                 fread(&isCorrect, sizeof(isCorrect), 1, userData);
+                fread(&canMultiply, sizeof(isCorrect), 1, userData);
                 for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
                 {
                     for (int colsA_ = 0; colsA_ < colsA; colsA_++)
@@ -296,12 +300,12 @@ int main()
                     }
                 }
                 temp_ = 0;
-                for (int rowsA_ = 0; rowsA_ < rowsA; rowsA_++)
+                for (int rowsB_ = 0; rowsB_ < rowsB; rowsB_++)
                 {
-                    for (int colsA_ = 0; colsA_ < colsA; colsA_++)
+                    for (int colsB_ = 0; colsB_ < colsB; colsB_++)
                     {
                         fread(&temp_, sizeof(temp_), 1, userData);
-                        array2[rowsA_][colsA_] = temp_;
+                        array2[rowsB_][colsB_] = temp_;
                     }
                 }
             }
