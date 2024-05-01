@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+const (
+	INDEX int = 2
+)
+
 func main() {
 
 	if INDEX > 7 {
@@ -21,5 +25,5 @@ func main() {
 	table(result, "Find 1:")
 
 	result = compost(array1, array2)
-	table(result, "Multiply Endofunção 1 e Endofunção 2:")
+	table(result, "End1 o End2:")
 }

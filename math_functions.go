@@ -1,9 +1,7 @@
 package main
 
-import "fmt"
-
-const (
-	INDEX int = 3
+import (
+	"fmt"
 )
 
 func fillzeros(n int) [][]int {
@@ -12,7 +10,7 @@ func fillzeros(n int) [][]int {
 		endofunction := make([]int, n)
 		temp := i
 		for j := 0; j < n; j++ {
-			endofunction[j] = temp % n
+			endofunction[j] = temp + 1%n
 			temp /= n
 		}
 		endofunctions = append(endofunctions, endofunction)
@@ -55,8 +53,9 @@ func table(array [][]int, message ...string) {
 	}
 	fmt.Println("\n", message[0], "\t")
 	for i := 0; i < len(array); i++ {
+		fmt.Printf("[%3d] = ", i)
 		for j := 0; j < len(array[i]); j++ {
-			fmt.Print("\t", array[i][j])
+			fmt.Print(array[i][j])
 		}
 		fmt.Println()
 	}
@@ -64,16 +63,18 @@ func table(array [][]int, message ...string) {
 
 func compost(array1 [][]int, array2 [][]int) [][]int {
 	output := make([][]int, len(array1)*len(array2))
-	for i := range output {
+
+	for i := 0; i < len(output); i++ {
 		output[i] = make([]int, INDEX)
 	}
 
-	for i := 0; i < len(array1); i++ {
-		for j := 0; j < len(array2); j++ {
-			for k := 0; k < len(array1[i]); k++ {
-				output[i*len(array2)+j][k] = array1[i][k] * array2[j][k]
-			}
+	for rowsA := 0; rowsA < len(array2); rowsA++ {
+		for i := 0; i < INDEX; i++ {
+			newX := (array1[rowsA][i]) - 1
+			fmt.Println("array: ", array1[rowsA][i], "sender: ", array2[rowsA][newX])
+			/* output[rowsA*len(array2)][i] = array2[rowsB][newX] */
 		}
 	}
+
 	return output
 }
